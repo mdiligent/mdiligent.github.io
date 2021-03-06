@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="学习NumPy库，把一些重要的或者难的用法记录下来，方便复习。 1.从数值范围创建数组 1numpy.arange(start, stop, step, dtype)#参数分别为起始值，终止值，步长和数据类型 2.创建等间隔一维数组 1np.linspace(start, stop, num&#x3D;50, endpoint&#x3D;True, retstep&#x3D;False, dtyp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="numpy-base-op-01">
+<meta property="og:url" content="http://example.com/2021/03/06/ai/numpy-base-op-01/index.html">
+<meta property="og:site_name" content="Coding时光印记">
+<meta property="og:description" content="学习NumPy库，把一些重要的或者难的用法记录下来，方便复习。 1.从数值范围创建数组 1numpy.arange(start, stop, step, dtype)#参数分别为起始值，终止值，步长和数据类型 2.创建等间隔一维数组 1np.linspace(start, stop, num&#x3D;50, endpoint&#x3D;True, retstep&#x3D;False, dtyp">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-06T13:03:33.000Z">
+<meta property="article:modified_time" content="2021-03-06T13:07:07.649Z">
+<meta property="article:author" content="Halo Wong">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="numpy">
+<meta name="twitter:card" content="summary"><title>numpy-base-op-01 | Coding时光印记</title><link ref="canonical" href="http://example.com/2021/03/06/ai/numpy-base-op-01/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: {"appId":"AEMEM04PPA","apiKey":"e54385e240ce92ee3d7b7fa1565fa774","indexName":"dev_blog","hits":{"per_page":10},"languages":{"inputPlaceholder":"搜索文章","hitsEmpty":"没有找到任何搜索结果：${query}","hitsStats":"找到 ${hits} 条搜索结果，耗时 ${time} 毫秒"}},
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-secret"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Coding时光印记</div><div class="header-banner-info__subtitle">一心学习，一直向前</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">numpy-base-op-01</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-03-06</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-03-06</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.8k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">13分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>学习NumPy库，把一些重要的或者难的用法记录下来，方便复习。</p>
+<p>1.从数值范围创建数组</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">numpy.arange(start, stop, step, dtype)#参数分别为起始值，终止值，步长和数据类型</span><br></pre></td></tr></table></div></figure>
+<p>2.创建等间隔一维数组</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.linspace(start, stop, num&#x3D;50, endpoint&#x3D;True, retstep&#x3D;False, dtype&#x3D;None)#参数分别为起始值，终止值，数据数，是否包含stop值，是否显示间距和数据类型</span><br></pre></td></tr></table></div></figure>
+
+<span id="more"></span>
+
+<p> 3.创建一个 ndarray</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">numpy.array(object, dtype &#x3D; None, copy &#x3D; True, order &#x3D; None, subok &#x3D; False, ndmin &#x3D; 0)</span><br><span class="line">#object   数组或嵌套的数列</span><br><span class="line">#dtype	数组元素的数据类型，可选</span><br><span class="line">#copy	对象是否需要复制，可选</span><br><span class="line">#order	创建数组的样式，C为行方向，F为列方向，A为任意方向（默认）</span><br><span class="line">#subok	默认返回一个与基类类型一致的数组</span><br><span class="line">#ndmin	指定生成数组的最小维度</span><br></pre></td></tr></table></div></figure>
+
+<p> 4.数据类型对象 (dtype)</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy.dtype(object, align, copy)</span><br><span class="line">#object - 要转换为的数据类型对象</span><br><span class="line">#align - 如果为 true，填充字段使其类似 C 的结构体。</span><br><span class="line">#copy - 复制 dtype 对象 ，如果为 false，则是对内置数据类型对象的引用</span><br></pre></td></tr></table></div></figure>
+
+<p> 注意：字节顺序是通过对数据类型预先设定”&lt;”或”&gt;”来决定的。”&lt;”意味着小端法(最小值存储在最小的地址，即低位组放在最前面)。”&gt;”意味着大端法(最重要的字节存储在最小的地址，即高位组放在最前面)。<br> 5. NumPy 创建数组</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy.empty(shape, dtype &#x3D; float, order &#x3D; &#39;C&#39;)</span><br><span class="line">#shape	数组形状</span><br><span class="line">#dtype	数据类型，可选</span><br><span class="line">#order	有&quot;C&quot;和&quot;F&quot;两个选项,分别代表，行优先和列优先，在计算机内存中的存储元素的顺序。</span><br></pre></td></tr></table></div></figure>
+<p>6.NumPy 从已有的数组创建数组</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">numpy.asarray(a, dtype &#x3D; None, order &#x3D; None)</span><br><span class="line">#a	任意形式的输入参数，可以是，列表, 列表的元组, 元组, 元组的元组, 元组的列表，多维数组</span><br><span class="line">#dtype	数据类型，可选</span><br><span class="line">#order	可选，有&quot;C&quot;和&quot;F&quot;两个选项,分别代表，行优先和列优先，在计算机内存中的存储元素的顺序。</span><br></pre></td></tr></table></div></figure>
+<ol start="7">
+<li>使用数字 0 将一个全为 1 的 5x5 二维数组包围<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Z &#x3D; np.ones((5,5))</span><br><span class="line">Z &#x3D; np.pad(Z, pad_width&#x3D;1, mode&#x3D;&#39;constant&#39;, constant_values&#x3D;0)</span><br></pre></td></tr></table></div></figure></li>
+<li>创建一个 5x5 的二维数组，并设置值 1, 2, 3, 4 落在其对角线下方<code>Z = np.diag(1+np.arange(4),k=-1)</code></li>
+<li>创建一个 10x10 的二维数组，并使得 1 和 0 沿对角线间隔放置<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Z &#x3D; np.zeros((10,10),dtype&#x3D;int)</span><br><span class="line">Z[1::2,::2] &#x3D; 1</span><br><span class="line">Z[::2,1::2] &#x3D; 1</span><br></pre></td></tr></table></div></figure></li>
+<li> 创建一个 0-10 的一维数组，并将 (1, 9] 之间的数全部反转成负数<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Z &#x3D; np.arange(11)</span><br><span class="line">Z[(1 &lt; Z) &amp; (Z &lt;&#x3D; 9)] *&#x3D; -1</span><br></pre></td></tr></table></div></figure></li>
+<li>找出两个一维数组中相同的元素</li>
+</ol>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Z1 &#x3D; np.random.randint(0,10,10)</span><br><span class="line">Z2 &#x3D; np.random.randint(0,10,10)</span><br><span class="line">print(&quot;Z1:&quot;, Z1)</span><br><span class="line">print(&quot;Z2:&quot;, Z2)</span><br><span class="line">np.intersect1d(Z1,Z2)</span><br></pre></td></tr></table></div></figure>
+
+<ol start="12">
+<li>统计数组各行的算术平均值</li>
+</ol>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.mean(a, axis&#x3D;1)</span><br></pre></td></tr></table></div></figure>
+
+<ol start="13">
+<li> 统计数组各列的加权平均值</li>
+</ol>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.average(a, axis&#x3D;0)</span><br></pre></td></tr></table></div></figure>
+<p>14.统计中位数，方差，标准差等。<br>15.沿横 / 纵轴分割数组</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">np.hsplit(a, 3)</span><br><span class="line">np.vsplit(a, 3)</span><br></pre></td></tr></table></div></figure>
+<p>16.返回每列最大值</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.max(a, axis&#x3D;0) #行最大值axis &#x3D; 1</span><br></pre></td></tr></table></div></figure>
+<ol start="17">
+<li>返回每列最大值索引</li>
+</ol>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.argmax(a, axis&#x3D;0) #最小值是argmin函数</span><br></pre></td></tr></table></div></figure>
+<p>18.找出两个一维数组中相同的元素<br><code>np.intersect1d(Z1,Z2)</code><br>19.使用 NumPy 打印昨天、今天、明天的日期</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yesterday &#x3D; np.datetime64(&#39;today&#39;, &#39;D&#39;) - np.timedelta64(1, &#39;D&#39;)</span><br><span class="line">today     &#x3D; np.datetime64(&#39;today&#39;, &#39;D&#39;)</span><br><span class="line">tomorrow  &#x3D; np.datetime64(&#39;today&#39;, &#39;D&#39;) + np.timedelta64(1, &#39;D&#39;)</span><br><span class="line">print(&quot;yesterday: &quot;, yesterday)</span><br><span class="line">print(&quot;today: &quot;, today)</span><br><span class="line">print(&quot;tomorrow: &quot;, tomorrow)</span><br></pre></td></tr></table></div></figure>
+<p>20.数组排序</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Z.sort()#升序排序</span><br><span class="line">Z.sort(axis&#x3D;0)#列升序</span><br></pre></td></tr></table></div></figure>
+<p>21.将 float32 转换为整型</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Z &#x3D; np.arange(10, dtype&#x3D;np.float32)</span><br><span class="line">Z &#x3D; Z.astype(np.int32, copy&#x3D;False)</span><br></pre></td></tr></table></div></figure>
+<p>22.将随机二维数组按照第 3 列从上到下进行升序排列</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Z &#x3D; np.random.randint(0,10,(5,5))#生成一个5行5列数值在0~10之间的数组</span><br><span class="line">Z[Z[:,2].argsort()]</span><br></pre></td></tr></table></div></figure>
+<p>23.交换前两行可以直接这样吗?</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A[[0,1]] &#x3D; A[[1,0]]</span><br></pre></td></tr></table></div></figure>
+<p>24.找出随机一维数组Z中出现频率最高的值</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.bincount(Z).argmax()</span><br></pre></td></tr></table></div></figure>
+<p>25.统计随机数组中的各元素的数量</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Z &#x3D; np.random.randint(0,100,25).reshape(5,5)</span><br><span class="line">np.unique(Z, return_counts&#x3D;True) # 返回值中，第 2 个数组对应第 1 个数组元素的数量</span><br></pre></td></tr></table></div></figure>
+<p>26.将多个 1 维数组拼合为单个 Ndarray</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Z &#x3D; np.array([Z1, Z2, Z3])</span><br><span class="line">np.concatenate(Z)</span><br></pre></td></tr></table></div></figure>
+<p>27.使用 NumPy 计算变量直接的相关性系数</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Z &#x3D; np.array([</span><br><span class="line">    [1, 2, 1, 9, 10, 3, 2, 6, 7], # 特征 A</span><br><span class="line">    [2, 1, 8, 3, 7, 5, 10, 7, 2], # 特征 B</span><br><span class="line">    [2, 1, 1, 8, 9, 4, 3, 5, 7]]) # 特征 C</span><br><span class="line">np.corrcoef(Z)</span><br></pre></td></tr></table></div></figure>
+<p>28.使用 NumPy 计算矩阵的特征值和特征向量</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">M &#x3D; np.matrix([[1,2,3], [4,5,6], [7,8,9]])</span><br><span class="line">w, v &#x3D; np.linalg.eig(M)</span><br><span class="line"># w 对应特征值，v 对应特征向量</span><br></pre></td></tr></table></div></figure>
+<p>29.打印九九乘法表</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.fromfunction(lambda i, j: (i + 1) * (j + 1), (9, 9))</span><br></pre></td></tr></table></div></figure>
+<p>30.使用 Numpy 将实验楼 LOGO 转换为 Ndarray 数组</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">from io import BytesIO</span><br><span class="line">from PIL import Image</span><br><span class="line">import PIL, requests</span><br><span class="line"></span><br><span class="line"># 通过链接下载图像</span><br><span class="line">URL &#x3D; &#39;https:&#x2F;&#x2F;static.shiyanlou.com&#x2F;img&#x2F;logo-black.png&#39;</span><br><span class="line">response &#x3D; requests.get(URL)</span><br><span class="line"></span><br><span class="line"># 将内容读取为图像</span><br><span class="line">I &#x3D; Image.open(BytesIO(response.content))</span><br><span class="line"></span><br><span class="line"># 将图像转换为 Ndarray</span><br><span class="line">shiyanlou &#x3D; np.asarray(I)</span><br><span class="line">shiyanlou</span><br><span class="line"># 将转换后的 Ndarray 重新绘制成图像</span><br><span class="line">from matplotlib import pyplot as plt</span><br><span class="line">%matplotlib inline</span><br><span class="line">plt.imshow(shiyanlou)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></div></figure>
+<p>31.几个常用的函数</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">flat #返回</span><br><span class="line"></span><br><span class="line">np.nonzero([1,0,2,0,1,0,4,0])#返回一维数组中非 0 元素的位置索引</span><br><span class="line"></span><br><span class="line">np.dot(A, B)#矩阵相乘</span><br><span class="line"></span><br><span class="line">np.power(x,4)#对x数组的每个值4次方</span><br><span class="line"></span><br><span class="line">np.set_printoptions(precision&#x3D;2)#对于二维随机数组中各元素，保留其 2 位小数</span><br><span class="line"></span><br><span class="line">Z&#x2F;1e3#科学记数法输出 NumPy（Z） 数组</span><br><span class="line"></span><br><span class="line">a.argsort()#打印各元素在数组中升序排列的索引</span><br><span class="line"></span><br><span class="line">a.real #属性，数组a的实部</span><br><span class="line">a.imag #属性，数组a的虚部</span><br><span class="line"></span><br><span class="line">numpy.linalg.inv()# 函数计算矩阵的乘法逆矩阵。</span><br><span class="line"></span><br><span class="line">numpy.linalg.solve() #函数给出了矩阵形式的线性方程的解。</span><br><span class="line"></span><br><span class="line">umpy.matlib.eye() #函数返回一个矩阵，对角线元素为 1，其他位置为零。</span><br><span class="line"></span><br><span class="line">np.c_[M1, M2]#按列连接两个数组</span><br><span class="line">np.r_[M1, M2]#按行连接两个数组</span><br></pre></td></tr></table></div></figure>
+<p>32.数组属性</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ndarray.ndim	秩，即轴的数量或维度的数量</span><br><span class="line">ndarray.shape	数组的维度，对于矩阵，n 行 m 列</span><br><span class="line">ndarray.size	数组元素的总个数，相当于 .shape 中 n*m 的值</span><br><span class="line">ndarray.dtype	ndarray 对象的元素类型</span><br><span class="line">ndarray.itemsize	ndarray 对象中每个元素的大小，以字节为单位</span><br><span class="line">ndarray.flags	ndarray 对象的内存信息</span><br><span class="line">ndarray.real	ndarray元素的实部</span><br><span class="line">ndarray.imag	ndarray 元素的虚部</span><br><span class="line">ndarray.data	包含实际数组元素的缓冲区，由于一般通过数组的索引获取元素，所以通常不需要使用这个属性。</span><br></pre></td></tr></table></div></figure>
+
+<p>参考：<br><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://www.shiyanlou.com/courses/1090">实验楼NumPy 百题大冲关</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://www.runoob.com/numpy/numpy-tutorial.html">NumPy教程</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">Halo Wong</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2021/03/06/ai/numpy-base-op-01/">http://example.com/2021/03/06/ai/numpy-base-op-01/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/python/">python</a></span><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/numpy/">numpy</a></span></div><div class="post-share"><div class="social-share" data-sites="qzone, qq, weibo, wechat, douban, linkedin, facebook, twitter, google">Share to: </div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2021/03/06/others/git-base-op/"><span class="paginator-prev__text">git基本操作</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/assets/profile/01.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">如月之恒,如日之升。</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/mdiligent/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Halo Wong</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"></div><div class="search-results"><div id="algolia-hits"></div></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1.0.1/dist/canvas-nest.min.js" color="0,0,0" opacity="0.6" count="99" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', function () {
+  $('.header-nav-search').on('click', function (e) {
+    e.stopPropagation();
+
+    $('body').css('overflow', 'hidden');
+    $('.search-popup')
+      .velocity('stop')
+      .velocity('transition.expandIn', {
+        duration: 300,
+        complete: function () {
+          $('.search-popup input').focus();
+        }
+      });
+    $('.search-mask')
+      .velocity('stop')
+      .velocity('transition.fadeIn', {
+        duration: 300
+      });
+  });
+
+  function closeSearch () {
+    $('body').css({ overflow: 'auto' });
+    $('.search-popup').css({ display: 'none' });
+    $('.search-mask').css({ display: 'none' });
+  }
+
+  $('.search-mask, .search-close').on('click', function () {
+    closeSearch();
+  });
+
+  $(document).on('keydown', function (e) {
+    // Escape <=> 27
+    if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+      closeSearch();
+    }
+  });
+
+  var algolia = CONFIG.algolia;
+  if (!algolia && !(algolia.appId && algolia.apiKey && algolia.indexName)) {
+    return console.error('Algolia setting is invalid.');
+  }
+
+  var search = instantsearch({
+    appId: algolia.appId,
+    apiKey: algolia.apiKey,
+    indexName: algolia.indexName,
+    searchParameters: {
+      hitsPerPage: algolia.hits.per_page || 10
+    },
+    searchFunction: function (helper) {
+      var searchInput = $('.search-input').find('input');
+
+      if (searchInput.val()) {
+        helper.search();
+      }
+    }
+  });
+
+  search.addWidget(
+    instantsearch.widgets.searchBox({
+      container: '.search-input',
+      reset: false,
+      magnifier: false,
+      placeholder: algolia.languages.inputPlaceholder
+    })
+  );
+
+  // The hits of search results.
+  search.addWidget(
+    instantsearch.widgets.hits({
+      container: '#algolia-hits',
+      templates: {
+        item: function (data) {
+          var link = data.permalink ? data.permalink : CONFIG.root + data.path;
+          return (
+            '<a href="' + link + '" class="algolia-hit-item-link">' +
+              data._highlightResult.title.value +
+            '</a>'
+          );
+        },
+        empty: function (data) {
+          return (
+            '<div id="algolia-hits-empty">' +
+              algolia.languages.hitsEmpty.replace(/\$\{query}/, data.query) +
+            '</div>'
+          );
+        }
+      },
+      cssClasses: {
+        item: 'algolia-hit-item'
+      }
+    })
+  );
+
+  // The stats of search results.
+  if ($('#algolia-stats')[0]) {
+    search.addWidget(
+      instantsearch.widgets.stats({
+        container: '#algolia-stats',
+        templates: {
+          body: function (data) {
+            var stats = algolia.languages.hitsStats
+              .replace(/\$\{hits}/, data.nbHits)
+              .replace(/\$\{time}/, data.processingTimeMS);
+            return (
+              stats +
+              '<span class="algolia-logo pull-right">' +
+                '<img src="' + CONFIG.root +
+                `${CONFIG.sourcePath.images}/algolia.svg" alt="Algolia" />` +
+              '</span>'
+            );
+          }
+        }
+      })
+    );
+  }
+
+  // The pagination of the results.
+  search.addWidget(
+    instantsearch.widgets.pagination({
+      container: '#algolia-pagination',
+      scrollTo: false,
+      showFirstLast: false,
+      labels: {
+        first: '<i class="fa fa-angle-double-left"></i>',
+        last: '<i class="fa fa-angle-double-right"></i>',
+        previous: '<i class="fa fa-angle-left"></i>',
+        next: '<i class="fa fa-angle-right"></i>'
+      },
+      cssClasses: {
+        root: 'pagination',
+        item: 'pagination-item',
+        link: 'page-number',
+        active: 'current',
+        disabled: 'disabled-item'
+      }
+    })
+  );
+
+  search.start();
+});</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script>function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'mdiligent/Blog-Comments');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (false) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (false) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.json"></script></body></html>

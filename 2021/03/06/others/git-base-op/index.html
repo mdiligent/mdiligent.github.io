@@ -1,0 +1,265 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="Git基本操作        配置用户名和邮箱地址。  12$ git config --global user.name[username]- 全局用户$ git config --global user.email [你的电子邮件地址]- 全局用户,注意没有[]   在一个新文件夹下 $ git init #初始化一个本地存储库，会生成.git这个子目录 ls -a #显">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git基本操作">
+<meta property="og:url" content="http://example.com/2021/03/06/others/git-base-op/index.html">
+<meta property="og:site_name" content="Coding时光印记">
+<meta property="og:description" content="Git基本操作        配置用户名和邮箱地址。  12$ git config --global user.name[username]- 全局用户$ git config --global user.email [你的电子邮件地址]- 全局用户,注意没有[]   在一个新文件夹下 $ git init #初始化一个本地存储库，会生成.git这个子目录 ls -a #显">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-06T12:50:02.000Z">
+<meta property="article:modified_time" content="2021-03-06T12:58:28.341Z">
+<meta property="article:author" content="Halo Wong">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary"><title>git基本操作 | Coding时光印记</title><link ref="canonical" href="http://example.com/2021/03/06/others/git-base-op/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: {"appId":"AEMEM04PPA","apiKey":"e54385e240ce92ee3d7b7fa1565fa774","indexName":"dev_blog","hits":{"per_page":10},"languages":{"inputPlaceholder":"搜索文章","hitsEmpty":"没有找到任何搜索结果：${query}","hitsStats":"找到 ${hits} 条搜索结果，耗时 ${time} 毫秒"}},
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-secret"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner" style="background: url(/plates/git-base-op/0.jpg) no-repeat center/cover;"><div class="header-banner-info"><div class="header-banner-info__title">Coding时光印记</div><div class="header-banner-info__subtitle">一心学习，一直向前</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">git基本操作</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-03-06</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-03-06</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">945</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">6分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h2 id="Git基本操作">
+          <a href="#Git基本操作" class="heading-link"><i class="fas fa-link"></i></a><a href="#Git基本操作" class="headerlink" title="Git基本操作"></a>Git基本操作</h2>
+      <ul>
+<li>配置用户名和邮箱地址。</li>
+</ul>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name[username]- 全局用户</span><br><span class="line">$ git config --global user.email [你的电子邮件地址]- 全局用户,注意没有[]</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><p>在一个新文件夹下</p>
+<p>$ git init #初始化一个本地存储库，会生成.git这个子目录</p>
+<p>ls -a #显示当前文件或目录的内容，包括隐藏文件</p>
+<span id="more"></span></li>
+<li><p>从远程存储库拷贝贝一个Git仓库到本地<br><code>git clone [url]#自己能够查看该项目，或者进行修改。</code></p>
+</li>
+</ul>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add           #命令可将该文件添加到缓存</span><br><span class="line">git status        #命令用于查看项目的当前状态。</span><br><span class="line">git commit        #将缓存区内容添加到仓库中。</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>执行git diff来查看执行git status的结果的详细信息（新手不是很常用）。</li>
+</ul>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git diff               #尚未缓存的改动</span><br><span class="line">git diff --cached      #查看已缓存的改动</span><br><span class="line">git diff HEAD          #查看已缓存的与未缓存的所有改动</span><br><span class="line">diff：git diff --stat  #显示摘要而非整个</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li><p><code>git reset HEAD</code>命令用于取消已缓存的内容。</p>
+</li>
+<li><p>如果只是简单地从工作目录中手工删除文件，运行git status时就会在未提交提交的提示。</p>
+<p>要从Git中移除某个文件，就必须要从已跟踪文件清单中移除，然后提交。可以用以下命令完成此项工作</p>
+<p>git rm &lt;文件&gt;</p>
+<p>如果删除之前修改过并且已经放到暂存区域的话，则必须要用强制删除选项-f</p>
+</li>
+</ul>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm -f &lt;file&gt;- f &lt;file&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p><code>git log</code> 命令列出历史提交记录。<br>如果把文件从暂存区域移除，但仍然希望保留在当前工作目录中，换句话说，仅是从跟踪清单中删除，使用–cached选项即可</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached &lt;file&gt;- 缓存&lt;file&gt;</span><br></pre></td></tr></table></div></figure>
+
+<p><code>git mv [原文件名] [新文件名]</code>命令用于移动或重命名一个文件，目录，软连接</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m &quot;添加 README.md 文件&quot;        # 提交并备注信息</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="Git-分支管理">
+          <a href="#Git-分支管理" class="heading-link"><i class="fas fa-link"></i></a><a href="#Git-分支管理" class="headerlink" title="Git 分支管理"></a>Git 分支管理</h2>
+      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git branch (branchname)   #创建分支</span><br><span class="line">git checkout (branchname) #切换分支</span><br><span class="line">git merge                 #合并分支</span><br><span class="line">git branch -d (branchname)#删除分支</span><br></pre></td></tr></table></div></figure>
+
+
+        <h2 id="使用GitHub">
+          <a href="#使用GitHub" class="heading-link"><i class="fas fa-link"></i></a><a href="#使用GitHub" class="headerlink" title="使用GitHub"></a>使用GitHub</h2>
+      <figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add [shortname] [url]   #要添加一个新的远程仓库</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以我们需要配置验证信息： 使用以下命令生成SSH Key：</li>
+</ul>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C &quot;youremail@example.com&quot;  </span><br></pre></td></tr></table></div></figure>
+
+<p>查看命令行上显示的.ssh文件夹位置，进去，打开 id_rsa.pub，复制里面的 key。回到 github 上，进入 Account =&gt; Settings（账户配置）。边选择 SSH and GPG keys，然后点击 New SSH key 按钮,title 设置标题，可以随便填，粘贴在你电脑上生成的 key。</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -T git@github.com    #验证是否成功</span><br><span class="line">$ git fetch [远程仓库名]    #从远程仓库下载新分支与数据</span><br><span class="line">cat README.md              # 查看 README.md 文件内容</span><br><span class="line">git push [alias] [branch]   #推送你的新分支与数据到某个远端仓库命令</span><br><span class="line">git remote rm [别名]        #删除远程仓库</span><br></pre></td></tr></table></div></figure>
+
+<p>将远程存储库中的更改合并到当前分支中。在默认模式下，<code>git pull</code>是<code>git fetch</code>后跟<code>git merge FETCH_HEAD</code>的缩写。<br>实例：</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir runoob-git-test                     # 创建测试目录</span><br><span class="line">$ cd runoob-git-test&#x2F;                       # 进入测试目录</span><br><span class="line">$ echo &quot;测试&quot; &gt;&gt; README.md                  # 创建 README.md 文件并写入内容</span><br><span class="line">$ ls                                        # 查看目录下的文件</span><br><span class="line">README</span><br><span class="line">$ git init                                  # 初始化</span><br><span class="line">$ git add README.md                         # 添加文件</span><br><span class="line">$ git commit -m &quot;添加 README.md 文件&quot;        # 提交并备注信息</span><br><span class="line">[master (root-commit) 0205aab] 添加 README.md 文件</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 README.md</span><br><span class="line"></span><br><span class="line"># 提交到 Github</span><br><span class="line">$ git remote add origin git@github.com:tianqixin&#x2F;runoob-git-test.git</span><br><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></div></figure>
+
+<p>参考：<br><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="http://www.runoob.com/git/git-tutorial.html">Git教程|菜鸟教程</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br>图片来自网络，侵删。</p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="http://example.com">Halo Wong</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="http://example.com/2021/03/06/others/git-base-op/">http://example.com/2021/03/06/others/git-base-op/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="http://example.com/tags/git/">git</a></span></div><div class="post-share"><div class="social-share" data-sites="qzone, qq, weibo, wechat, douban, linkedin, facebook, twitter, google">Share to: </div></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2021/03/06/ai/numpy-base-op-01/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">numpy-base-op-01</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2021/03/06/others/use-hexo-create-blog/"><span class="paginator-prev__text">用hexo在github上搭建个人博客</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Git%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">
+          Git基本操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-%E5%88%86%E6%94%AF%E7%AE%A1%E7%90%86"><span class="toc-number">2.</span> <span class="toc-text">
+          Git 分支管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8GitHub"><span class="toc-number">3.</span> <span class="toc-text">
+          使用GitHub</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/assets/profile/01.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">如月之恒,如日之升。</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/mdiligent/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Halo Wong</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"></div><div class="search-results"><div id="algolia-hits"></div></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1.0.1/dist/canvas-nest.min.js" color="0,0,0" opacity="0.6" count="99" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', function () {
+  $('.header-nav-search').on('click', function (e) {
+    e.stopPropagation();
+
+    $('body').css('overflow', 'hidden');
+    $('.search-popup')
+      .velocity('stop')
+      .velocity('transition.expandIn', {
+        duration: 300,
+        complete: function () {
+          $('.search-popup input').focus();
+        }
+      });
+    $('.search-mask')
+      .velocity('stop')
+      .velocity('transition.fadeIn', {
+        duration: 300
+      });
+  });
+
+  function closeSearch () {
+    $('body').css({ overflow: 'auto' });
+    $('.search-popup').css({ display: 'none' });
+    $('.search-mask').css({ display: 'none' });
+  }
+
+  $('.search-mask, .search-close').on('click', function () {
+    closeSearch();
+  });
+
+  $(document).on('keydown', function (e) {
+    // Escape <=> 27
+    if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+      closeSearch();
+    }
+  });
+
+  var algolia = CONFIG.algolia;
+  if (!algolia && !(algolia.appId && algolia.apiKey && algolia.indexName)) {
+    return console.error('Algolia setting is invalid.');
+  }
+
+  var search = instantsearch({
+    appId: algolia.appId,
+    apiKey: algolia.apiKey,
+    indexName: algolia.indexName,
+    searchParameters: {
+      hitsPerPage: algolia.hits.per_page || 10
+    },
+    searchFunction: function (helper) {
+      var searchInput = $('.search-input').find('input');
+
+      if (searchInput.val()) {
+        helper.search();
+      }
+    }
+  });
+
+  search.addWidget(
+    instantsearch.widgets.searchBox({
+      container: '.search-input',
+      reset: false,
+      magnifier: false,
+      placeholder: algolia.languages.inputPlaceholder
+    })
+  );
+
+  // The hits of search results.
+  search.addWidget(
+    instantsearch.widgets.hits({
+      container: '#algolia-hits',
+      templates: {
+        item: function (data) {
+          var link = data.permalink ? data.permalink : CONFIG.root + data.path;
+          return (
+            '<a href="' + link + '" class="algolia-hit-item-link">' +
+              data._highlightResult.title.value +
+            '</a>'
+          );
+        },
+        empty: function (data) {
+          return (
+            '<div id="algolia-hits-empty">' +
+              algolia.languages.hitsEmpty.replace(/\$\{query}/, data.query) +
+            '</div>'
+          );
+        }
+      },
+      cssClasses: {
+        item: 'algolia-hit-item'
+      }
+    })
+  );
+
+  // The stats of search results.
+  if ($('#algolia-stats')[0]) {
+    search.addWidget(
+      instantsearch.widgets.stats({
+        container: '#algolia-stats',
+        templates: {
+          body: function (data) {
+            var stats = algolia.languages.hitsStats
+              .replace(/\$\{hits}/, data.nbHits)
+              .replace(/\$\{time}/, data.processingTimeMS);
+            return (
+              stats +
+              '<span class="algolia-logo pull-right">' +
+                '<img src="' + CONFIG.root +
+                `${CONFIG.sourcePath.images}/algolia.svg" alt="Algolia" />` +
+              '</span>'
+            );
+          }
+        }
+      })
+    );
+  }
+
+  // The pagination of the results.
+  search.addWidget(
+    instantsearch.widgets.pagination({
+      container: '#algolia-pagination',
+      scrollTo: false,
+      showFirstLast: false,
+      labels: {
+        first: '<i class="fa fa-angle-double-left"></i>',
+        last: '<i class="fa fa-angle-double-right"></i>',
+        previous: '<i class="fa fa-angle-left"></i>',
+        next: '<i class="fa fa-angle-right"></i>'
+      },
+      cssClasses: {
+        root: 'pagination',
+        item: 'pagination-item',
+        link: 'page-number',
+        active: 'current',
+        disabled: 'disabled-item'
+      }
+    })
+  );
+
+  search.start();
+});</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script>function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'mdiligent/Blog-Comments');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (false) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (false) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.json"></script></body></html>
