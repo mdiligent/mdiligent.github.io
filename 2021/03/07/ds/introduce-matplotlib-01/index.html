@@ -1,0 +1,268 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="基础知识        pyplot是Matplotlib 软件包中子包，提供了一个类似MATLAB的绘图框架。导入  1import matplotlib.pyplot as plt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Matplotlib入门">
+<meta property="og:url" content="https://mdiligent.github.io/2021/03/07/ds/introduce-matplotlib-01/index.html">
+<meta property="og:site_name" content="Coding时光印记">
+<meta property="og:description" content="基础知识        pyplot是Matplotlib 软件包中子包，提供了一个类似MATLAB的绘图框架。导入  1import matplotlib.pyplot as plt">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-03-07T14:31:04.000Z">
+<meta property="article:modified_time" content="2021-03-07T14:32:52.899Z">
+<meta property="article:author" content="Halo Wong">
+<meta property="article:tag" content="matplotlib">
+<meta name="twitter:card" content="summary"><title>Matplotlib入门 | Coding时光印记</title><link ref="canonical" href="https://mdiligent.github.io/2021/03/07/ds/introduce-matplotlib-01/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.css" type="text/css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: {"appId":"AEMEM04PPA","apiKey":"e54385e240ce92ee3d7b7fa1565fa774","indexName":"dev_blog","hits":{"per_page":10},"languages":{"inputPlaceholder":"搜索文章","hitsEmpty":"没有找到任何搜索结果：${query}","hitsStats":"找到 ${hits} 条搜索结果，耗时 ${time} 毫秒"}},
+  assistSearch: ["google","bing","baidu"],
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":true},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="javascript:;" onclick="return false;"><span class="header-nav-menu-item__icon"><i class="fas fa-book"></i></span><span class="header-nav-menu-item__text">文章</span></a><div class="header-nav-submenu"><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/archives/"><span class="header-nav-submenu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-submenu-item__text">归档</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/categories/"><span class="header-nav-submenu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-submenu-item__text">分类</span></a></div><div class="header-nav-submenu-item"><a class="header-nav-submenu-item__link" href="/tags/"><span class="header-nav-submenu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-submenu-item__text">标签</span></a></div></div></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-user-secret"></i></span><span class="header-nav-menu-item__text">关于</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Coding时光印记</div><div class="header-banner-info__subtitle">一心学习，一直向前</div></div><div class="header-banner-arrow"><div class="header-banner-arrow__icon"><i class="fas fa-angle-down"></i></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Matplotlib入门</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-03-07</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-03-07</span></span><span class="post-meta-item post-meta-item--wordcount"><span class="post-meta-item__icon"><i class="far fa-file-word"></i></span><span class="post-meta-item__info">字数统计</span><span class="post-meta-item__value">1.3k</span></span><span class="post-meta-item post-meta-item--readtime"><span class="post-meta-item__icon"><i class="far fa-clock"></i></span><span class="post-meta-item__info">阅读时长</span><span class="post-meta-item__value">11分</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h3 id="基础知识">
+          <a href="#基础知识" class="heading-link"><i class="fas fa-link"></i></a><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h3>
+      <ul>
+<li>pyplot是Matplotlib 软件包中子包，提供了一个类似MATLAB的绘图框架。导入</li>
+</ul>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br></pre></td></tr></table></div></figure>
+
+<span id="more"></span>
+
+<p>figure图像</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">matplotlib.pyplot.figure(num&#x3D;None, figsize&#x3D;None, dpi&#x3D;None, facecolor&#x3D;None, edgecolor&#x3D;None, frameon&#x3D;True, FigureClass&#x3D;&lt;class &#39;matplotlib.figure.Figure&#39;&gt;, clear&#x3D;False, **kwargs)</span><br><span class="line"># num 图像标号</span><br><span class="line">#  figsize ： 整数元组，可选，默认值：无，宽度，高度（英寸）。</span><br><span class="line">#  dpi ： 整数，可选，默认值：无，这个数字的分辨率</span><br><span class="line">#  facecolor：背景颜色。</span><br><span class="line">#   edgecolor：边框颜色。</span><br><span class="line">#   frameon ： bool，optional，默认值：True，如果为False，则禁止绘制图框。</span><br><span class="line">#   FigureClass ：的 子类Figure（可选）使用自定义Figure实例。</span><br><span class="line">#   clear ： bool，可选，默认值：False，如果为True并且该图已经存在，那么它将被清除。</span><br></pre></td></tr></table></div></figure>
+
+<p>绘图函数</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plt.plot(x，y，fmt,scalex &#x3D; True，scaley &#x3D; True，data &#x3D; None，** kwargs ）</span><br><span class="line">#  x,y 数据点的水平&#x2F;垂直坐标</span><br><span class="line">#   fmt &#x3D; &#39;[color][marker][line]&#39;颜色、标记和线条样式</span><br><span class="line">#   scalex，scaley 默认值：True，这些参数确定视图限制是否适合数据限制。值将传递给autoscale_view。</span><br></pre></td></tr></table></div></figure>
+
+<p>绘制多个图可以两次调用plot函数或者在函数里传入多组参数。<br>注意：如果为plot（）命令提供单个列表或数组，则matplotlib假定它是一系列y值，并自动为您生成x值。由于python范围以0开头，因此默认的x向量与y的长度相同，但以0开头。</p>
+<p>使用Line2D属性作为关键字参数来更好地控制外观。行属性和fmt可以混合使用。以下两个调用产生相同的结果：</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; plot(x, y, &#39;go--&#39;, linewidth&#x3D;2, markersize&#x3D;12)</span><br><span class="line">&gt;&gt;&gt; plot(x, y, color&#x3D;&#39;green&#39;, marker&#x3D;&#39;o&#39;, linestyle&#x3D;&#39;dashed&#39;,</span><br><span class="line">...      linewidth&#x3D;2, markersize&#x3D;12)</span><br></pre></td></tr></table></div></figure>
+
+<p>设置坐标轴</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">plt.xlim((-1, 2))   #设置x坐标轴范围</span><br><span class="line">plt.ylim((-2, 3))   #设置y坐标轴范围</span><br><span class="line">plt.xlabel(&#39;I am x&#39;)#设置x坐标轴名称</span><br><span class="line">plt.ylabel(&#39;I am y&#39;)#设置x坐标轴名称</span><br><span class="line">plt.xticks()        #设置x轴刻度，无参则不显示x轴</span><br><span class="line">plt.yticks          #设置y轴刻度以及名称</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>使用plt.gca获取当前坐标轴信息. 使用.spines设置边框：右侧边框；使用.set_color设置边框颜色：默认白色； 使用.spines设置边框：上边框；使用.set_color设置边框颜色：默认白色；</li>
+<li>使用.xaxis.set_ticks_position设置x坐标刻度数字或名称的位置：bottom.（所有位置：top，bottom，both，default，none）</li>
+<li>ax.xaxis.set_ticks_position(‘bottom’)<br>使用.spines设置边框：x轴；使用.set_position设置边框位置：y=0的位置；（位置所有属性：outward，axes，data）<br>（y轴类似）</li>
+<li>图例</li>
+</ul>
+<p>首先对图中的两条线绘制图例，设置两条线的类型等信息，用变量 l1 和 l2 分别存储起来. 而且需要注意的是 l1, l2,要以逗号结尾, 因为plt.plot() 返回的是一个列表。</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">l1, &#x3D; plt.plot(x, y1, label&#x3D;&#39;linear line&#39;)</span><br><span class="line">l2, &#x3D; plt.plot(x, y2, color&#x3D;&#39;red&#39;, linewidth&#x3D;1.0, linestyle&#x3D;&#39;--&#39;, label&#x3D;&#39;square line&#39;)</span><br><span class="line">plt.legend(handles&#x3D;[l1, l2], labels&#x3D;[&#39;up&#39;, &#39;down&#39;],  loc&#x3D;&#39;best&#39;)</span><br><span class="line"># handles线，依次对应labels的名称</span><br><span class="line"># labels 图例名称</span><br><span class="line"># loc图例的位置，’loc’参数有多种，’best’表示自动分配最佳位置</span><br></pre></td></tr></table></div></figure>
+
+
+        <h3 id="作图">
+          <a href="#作图" class="heading-link"><i class="fas fa-link"></i></a><a href="#作图" class="headerlink" title="作图"></a>作图</h3>
+      <ul>
+<li>柱状图</li>
+</ul>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">n &#x3D; 12</span><br><span class="line">X &#x3D; np.arange(n)</span><br><span class="line">Y1 &#x3D; (1 - X &#x2F; float(n)) * np.random.uniform(0.5, 1.0, n)</span><br><span class="line">Y2 &#x3D; (1 - X &#x2F; float(n)) * np.random.uniform(0.5, 1.0, n)</span><br><span class="line">plt.bar(X, +Y1)</span><br><span class="line">plt.bar(X, -Y2)</span><br><span class="line">plt.xlim(-.5, n)</span><br><span class="line">plt.xticks(())</span><br><span class="line">plt.ylim(-1.25, 1.25)</span><br><span class="line">plt.yticks(())</span><br><span class="line">#添加颜色</span><br><span class="line">plt.bar(X, +Y1, facecolor&#x3D;&#39;#9999ff&#39;, edgecolor&#x3D;&#39;white&#39;)</span><br><span class="line">plt.bar(X, -Y2, facecolor&#x3D;&#39;#ff9999&#39;, edgecolor&#x3D;&#39;white&#39;)</span><br><span class="line"></span><br><span class="line"># 添加数字</span><br><span class="line">for x, y in zip(X, Y2):</span><br><span class="line">    plt.text(x + 0.4, -y - 0.05, &#39;%.2f&#39; % y, ha&#x3D;&#39;center&#39;, va&#x3D;&#39;top&#39;)</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>散点图</li>
+</ul>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">plt.scatter(X, Y, s&#x3D;75, c&#x3D;T, alpha&#x3D;.5)</span><br><span class="line">#输入X和Y作为location，size&#x3D;75，颜色为T，color map用默认值，</span><br><span class="line">透明度alpha 为 50%。 x轴显示范围定位(-1.5，1.5)，</span><br><span class="line">并用xtick()函数来隐藏x坐标轴，y轴同理。</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>填充颜色</li>
+</ul>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; np.array([0.313660827978, 0.365348418405, 0.423733120134,</span><br><span class="line">              0.365348418405, 0.439599930621, 0.525083754405,</span><br><span class="line">              0.423733120134, 0.525083754405, 0.651536351379]).reshape(3,3)</span><br><span class="line">plt.imshow(a, interpolation&#x3D;&#39;nearest&#39;, cmap&#x3D;&#39;bone&#39;, origin&#x3D;&#39;lower&#39;)</span><br><span class="line">#按照a数组填充颜色</span><br><span class="line">#出图方式，多种参数值可选</span><br><span class="line">plt.colorbar(shrink&#x3D;.92)  #添加颜色备注条</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>3D图</li>
+</ul>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">from mpl_toolkits.mplot3d import Axes3D  #额外添加这个模块</span><br><span class="line">fig &#x3D; plt.figure() #创建窗口</span><br><span class="line">ax &#x3D; Axes3D(fig) #添加3D坐标轴</span><br><span class="line"></span><br><span class="line">X &#x3D; np.arange(-4, 4, 0.25)</span><br><span class="line">Y &#x3D; np.arange(-4, 4, 0.25)</span><br><span class="line">X, Y &#x3D; np.meshgrid(X, Y)    # x-y 平面的网格</span><br><span class="line">R &#x3D; np.sqrt(X ** 2 + Y ** 2)</span><br><span class="line">Z &#x3D; np.sin(R)</span><br><span class="line">x.plot_surface(X, Y, Z, rstride&#x3D;1, cstride&#x3D;1, cmap&#x3D;plt.get_cmap(&#39;rainbow&#39;))</span><br><span class="line">#做出一个三维曲面，并将一个 colormap rainbow 填充颜色，其中，rstride 和 cstride 分别代表 row 和 column 的跨度。</span><br><span class="line">ax.contourf(X, Y, Z, zdir&#x3D;&#39;z&#39;, offset&#x3D;-2, cmap&#x3D;plt.get_cmap(&#39;rainbow&#39;))</span><br><span class="line">#添加等高线，即在x&#x2F;y轴上的投影</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>多图显示</li>
+</ul>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plt.subplot(a,b,c) #把figure分成a行b列，图画在第c个格，可以不要逗号</span><br></pre></td></tr></table></div></figure>
+
+<ul>
+<li>次坐标轴<br>获取figure默认的坐标系 ax1</li>
+</ul>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fig, ax1 &#x3D; plt.subplots()</span><br><span class="line">ax2 &#x3D; ax1.twinx()   #对ax1调用twinx()方法，生成如同镜面效果后的ax2</span><br></pre></td></tr></table></div></figure>
+
+<p>参考：<br><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://morvanzhou.github.io/tutorials/data-manipulation/plt/">莫烦Python</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span><br><span class="exturl"><a class="exturl__link" target="_blank" rel="noopener" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.html#module-matplotlib.pyplot">Pyplot API</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://mdiligent.github.io">Halo Wong</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://mdiligent.github.io/2021/03/07/ds/introduce-matplotlib-01/">https://mdiligent.github.io/2021/03/07/ds/introduce-matplotlib-01/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://mdiligent.github.io/tags/matplotlib/">matplotlib</a></span></div><div class="post-share"><div class="social-share" data-sites="qzone, qq, weibo, wechat, douban, linkedin, facebook, twitter, google">Share to: </div></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2021/03/07/ds/introduce-pandas/"><span class="paginator-prev__text">pandas入门</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div><div class="comments" id="comments"><div id="utterances-container"></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">
+          基础知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%9C%E5%9B%BE"><span class="toc-number">2.</span> <span class="toc-text">
+          作图</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/assets/profile/01.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">如月之恒,如日之升。</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/mdiligent/" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="https://plus.google.com/" target="_blank" rel="noopener" data-popover="Google" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-google"></i></span></a><a class="sidebar-ov-social-item" href="https://twitter.com/" target="_blank" rel="noopener" data-popover="Twitter" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-twitter"></i></span></a><a class="sidebar-ov-social-item" href="https://youtube.com/" target="_blank" rel="noopener" data-popover="Youtube" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-youtube"></i></span></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>Halo Wong</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"></div><div class="search-btns">使用搜索：<span class="search-btns-item search-btns-item--google"><i class="fab fa-google"></i>谷歌</span><span class="search-btns-item search-btns-item--bing"><i></i>必应</span><span class="search-btns-item search-btns-item--baidu"><i></i>百度</span></div><div class="search-results"><div id="algolia-hits"></div></div><div id="algolia-pagination"></div><div id="algolia-stats"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="https://cdn.jsdelivr.net/npm/ribbon.js@latest/dist/ribbon.min.js" size="120" alpha="0.6" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1.0.1/dist/canvas-nest.min.js" color="0,0,0" opacity="0.6" count="99" zIndex="-1"></script><script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.1.1/dist/instantsearch.min.js" defer></script><script>window.addEventListener('DOMContentLoaded', function () {
+  $('.header-nav-search').on('click', function (e) {
+    e.stopPropagation();
+
+    $('body').css('overflow', 'hidden');
+    $('.search-popup')
+      .velocity('stop')
+      .velocity('transition.expandIn', {
+        duration: 300,
+        complete: function () {
+          $('.search-popup input').focus();
+        }
+      });
+    $('.search-mask')
+      .velocity('stop')
+      .velocity('transition.fadeIn', {
+        duration: 300
+      });
+  });
+
+  function closeSearch () {
+    $('body').css({ overflow: 'auto' });
+    $('.search-popup').css({ display: 'none' });
+    $('.search-mask').css({ display: 'none' });
+  }
+
+  $('.search-mask, .search-close').on('click', function () {
+    closeSearch();
+  });
+
+  $(document).on('keydown', function (e) {
+    // Escape <=> 27
+    if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+      closeSearch();
+    }
+  });
+
+  var algolia = CONFIG.algolia;
+  if (!algolia && !(algolia.appId && algolia.apiKey && algolia.indexName)) {
+    return console.error('Algolia setting is invalid.');
+  }
+
+  var search = instantsearch({
+    appId: algolia.appId,
+    apiKey: algolia.apiKey,
+    indexName: algolia.indexName,
+    searchParameters: {
+      hitsPerPage: algolia.hits.per_page || 10
+    },
+    searchFunction: function (helper) {
+      var searchInput = $('.search-input').find('input');
+
+      if (searchInput.val()) {
+        helper.search();
+      }
+    }
+  });
+
+  search.addWidget(
+    instantsearch.widgets.searchBox({
+      container: '.search-input',
+      reset: false,
+      magnifier: false,
+      placeholder: algolia.languages.inputPlaceholder
+    })
+  );
+
+  // The hits of search results.
+  search.addWidget(
+    instantsearch.widgets.hits({
+      container: '#algolia-hits',
+      templates: {
+        item: function (data) {
+          var link = data.permalink ? data.permalink : CONFIG.root + data.path;
+          return (
+            '<a href="' + link + '" class="algolia-hit-item-link">' +
+              data._highlightResult.title.value +
+            '</a>'
+          );
+        },
+        empty: function (data) {
+          return (
+            '<div id="algolia-hits-empty">' +
+              algolia.languages.hitsEmpty.replace(/\$\{query}/, data.query) +
+            '</div>'
+          );
+        }
+      },
+      cssClasses: {
+        item: 'algolia-hit-item'
+      }
+    })
+  );
+
+  // The stats of search results.
+  if ($('#algolia-stats')[0]) {
+    search.addWidget(
+      instantsearch.widgets.stats({
+        container: '#algolia-stats',
+        templates: {
+          body: function (data) {
+            var stats = algolia.languages.hitsStats
+              .replace(/\$\{hits}/, data.nbHits)
+              .replace(/\$\{time}/, data.processingTimeMS);
+            return (
+              stats +
+              '<span class="algolia-logo pull-right">' +
+                '<img src="' + CONFIG.root +
+                `${CONFIG.sourcePath.images}/algolia.svg" alt="Algolia" />` +
+              '</span>'
+            );
+          }
+        }
+      })
+    );
+  }
+
+  // The pagination of the results.
+  search.addWidget(
+    instantsearch.widgets.pagination({
+      container: '#algolia-pagination',
+      scrollTo: false,
+      showFirstLast: false,
+      labels: {
+        first: '<i class="fa fa-angle-double-left"></i>',
+        last: '<i class="fa fa-angle-double-right"></i>',
+        previous: '<i class="fa fa-angle-left"></i>',
+        next: '<i class="fa fa-angle-right"></i>'
+      },
+      cssClasses: {
+        root: 'pagination',
+        item: 'pagination-item',
+        link: 'page-number',
+        active: 'current',
+        disabled: 'disabled-item'
+      }
+    })
+  );
+
+  search.start();
+});</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script>function loadUtterances() {
+  var d = document, s = d.createElement('script');
+  var container = d.getElementById('utterances-container');
+
+  if (!container) {
+    return;
+  }
+  s.src = 'https://utteranc.es/client.js';
+  s.setAttribute('repo', 'mdiligent/Blog-Comments');
+  s.setAttribute('issue-term', 'title');
+  s.setAttribute('label', 'utterances');
+  s.setAttribute('theme', 'github-light');
+  s.setAttribute('crossorigin', 'anonymous');
+  s.setAttribute('async', '');
+  if (false) {
+    s.setAttribute('data-pjax-rm', '');
+  }
+  container.append(s);
+}
+
+if (false) {
+  loadUtterances();
+} else {
+  window.addEventListener('DOMContentLoaded', loadUtterances, false);
+}</script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.json"></script></body></html>
