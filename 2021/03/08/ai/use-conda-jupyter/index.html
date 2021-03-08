@@ -1,12 +1,12 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="anaconda换源和恢复默认       查看当前使用源 1conda config --show-sources 恢复默认源 1conda config --remove-key channels 添加清华源（是http，后边再加个win-64，可能还需要打开.condarc删除default选项） 123conda config --add chann">
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="anaconda换源和恢复默认       查看当前使用源 1conda config --show-sources 恢复默认源 1conda config --remove-key channels">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Anaconda和Jupyter的使用">
 <meta property="og:url" content="https://mdiligent.github.io/2021/03/08/ai/use-conda-jupyter/index.html">
 <meta property="og:site_name" content="Coding时光印记">
-<meta property="og:description" content="anaconda换源和恢复默认       查看当前使用源 1conda config --show-sources 恢复默认源 1conda config --remove-key channels 添加清华源（是http，后边再加个win-64，可能还需要打开.condarc删除default选项） 123conda config --add chann">
+<meta property="og:description" content="anaconda换源和恢复默认       查看当前使用源 1conda config --show-sources 恢复默认源 1conda config --remove-key channels">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-08T14:16:37.000Z">
-<meta property="article:modified_time" content="2021-03-08T14:24:08.824Z">
+<meta property="article:modified_time" content="2021-03-08T14:26:52.173Z">
 <meta property="article:author" content="Halo Wong">
 <meta property="article:tag" content="jupyter">
 <meta property="article:tag" content="anaconda">
@@ -41,6 +41,8 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></he
 <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config -<span class="literal">-show</span><span class="literal">-sources</span></span><br></pre></td></tr></table></div></figure>
 <p>恢复默认源</p>
 <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda config -<span class="literal">-remove</span><span class="literal">-key</span> channels</span><br></pre></td></tr></table></div></figure>
+<span id="more"></span>
+
 <p>添加清华源（是http，后边再加个win-64，可能还需要打开.condarc删除default选项）</p>
 <figure class="highlight powershell"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">conda config -<span class="literal">-add</span> channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/win<span class="literal">-64</span>/</span><br><span class="line">conda config -<span class="literal">-add</span> channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/win<span class="literal">-64</span>/</span><br><span class="line">conda config -<span class="literal">-add</span> channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/<span class="built_in">r</span></span><br></pre></td></tr></table></div></figure>
 
